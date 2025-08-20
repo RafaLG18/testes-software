@@ -44,6 +44,7 @@ public class Tests {
         when(usuarioRep.inserir(u)).thenReturn(u);
         UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
 
+
     }
     @Test
     public void cadastroEmailExistente(){
