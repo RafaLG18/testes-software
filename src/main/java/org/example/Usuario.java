@@ -15,7 +15,11 @@ public class Usuario {
         DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.nome=nome;
         this.endereco=endereco;
-        this.dataNascimento=LocalDate.parse(dataNascimento,formatter);
+        if(dataNascimento != null && !dataNascimento.trim().isEmpty()) {
+            this.dataNascimento=LocalDate.parse(dataNascimento,formatter);
+        } else {
+            this.dataNascimento = null;
+        }
         this.email=email;
         this.telefone=telefone;
         this.senha=senha;

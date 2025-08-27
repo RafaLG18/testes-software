@@ -14,7 +14,17 @@ public class UsuarioNegocio {
         if(this.rep.buscarPorEmail(u.getEmail())){
             return null;
         }
+        if(u.getNome() == null || u.getNome().trim().isEmpty()){
+            return null;
+        }
 
+        if(u.getEndereco() == null || u.getEndereco().trim().isEmpty()){
+            return null;
+        }
+
+        if(u.getDataNascimento() == null ){
+            return null;
+        }
         return this.rep.inserir(u);
     }
 }
