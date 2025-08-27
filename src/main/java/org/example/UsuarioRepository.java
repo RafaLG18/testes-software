@@ -33,5 +33,38 @@ public class UsuarioRepository {
         }
         return found;
     };
+    public boolean verificarExistenciaNome(String nome){
+        boolean found = false;
+        for (Usuario u:usuarios){
+            if(!u.getNome().isEmpty()){
+                found =true;
+                break;
+            }
+        }
+        return found;
+    }
+
+    public boolean verificarExistenciaEndereco(String endereco){
+        boolean found = false;
+        for (Usuario u:usuarios){
+            if(!u.getEndereco().isEmpty()){
+                found =true;
+                break;
+            }
+        }
+        return found;
+    }
+
+    public boolean verificarExistenciaDataNascimento(String Data){
+        boolean found = false;
+        for (Usuario u:usuarios){
+            if(u.getDataNascimento()!=null){
+                found =true;
+                break;
+            }
+        }
+        return found;
+    }
+
 
 }

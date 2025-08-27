@@ -70,6 +70,12 @@ public class Tests {
                 "usuario-1@gmail.com",
                 "(81)99999-9992",
                 "3xCf%12AkGtUmnhg!@as");
+        UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
+        when(usuarioRep.verificarExistenciaNome(u.getNome())).thenReturn(false);
+        when(usuarioRep.inserir(u)).thenReturn(u);
+        Usuario uCad=neg.adicionar(u);
+        verify(usuarioRep, times(0)).inserir(u);
+        Assertions.assertNull(uCad);
     }
     @Test
     public void cadastroFaltandoEndereco(){
@@ -79,6 +85,12 @@ public class Tests {
                 "usuario-2@gmail.com",
                 "(81)99999-9993",
                 "3xCf%12AkGtUmnhg!@as");
+        UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
+        when(usuarioRep.verificarExistenciaEndereco(u.getEndereco())).thenReturn(false);
+        when(usuarioRep.inserir(u)).thenReturn(u);
+        Usuario uCad=neg.adicionar(u);
+        verify(usuarioRep, times(0)).inserir(u);
+        Assertions.assertNull(uCad);
     }
     @Test
     public void cadastroFaltandoData(){
@@ -88,6 +100,12 @@ public class Tests {
                 "usuario-3@gmail.com",
                 "(81)99999-9994",
                 "3xCf%12AkGtUmnhg!@as");
+        UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
+        when(usuarioRep.verificarExistenciaDataNascimento(u.getEndereco())).thenReturn(false);
+        when(usuarioRep.inserir(u)).thenReturn(u);
+        Usuario uCad=neg.adicionar(u);
+        verify(usuarioRep, times(0)).inserir(u);
+        Assertions.assertNull(uCad);
     }
     @Test
     public void cadastroFaltandoEmail(){
