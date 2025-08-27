@@ -4,7 +4,6 @@ import org.example.Usuario;
 import org.example.UsuarioNegocio;
 import org.example.UsuarioRepository;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -41,8 +40,8 @@ public class Tests {
                 "(81)99999-9999",
                 "3xCf%12AkGtUmnhg!@as");
         UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
-        when(usuarioRep.buscarPorTelefone(u.getTelefone())).thenReturn(true);
         when(usuarioRep.inserir(u)).thenReturn(u);
+        when(usuarioRep.buscarPorTelefone(u.getTelefone())).thenReturn(true);
         Usuario uCad=neg.adicionar(u);
         verify(usuarioRep, times(0)).inserir(u);
         Assertions.assertNull(uCad);
@@ -56,8 +55,8 @@ public class Tests {
                 "(81)99999-9991",
                 "3xCf%12AkGtUmnhg!@as");
         UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
-        when(usuarioRep.buscarPorEmail(u.getEmail())).thenReturn(true);
         when(usuarioRep.inserir(u)).thenReturn(u);
+        when(usuarioRep.buscarPorEmail(u.getEmail())).thenReturn(true);
         Usuario uCad=neg.adicionar(u);
         verify(usuarioRep, times(0)).inserir(u);
         Assertions.assertNull(uCad);
@@ -71,7 +70,6 @@ public class Tests {
                 "(81)99999-9992",
                 "3xCf%12AkGtUmnhg!@as");
         UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
-        when(usuarioRep.verificarExistenciaNome()).thenReturn(false);
         when(usuarioRep.inserir(u)).thenReturn(u);
         Usuario uCad=neg.adicionar(u);
         verify(usuarioRep, times(0)).inserir(u);
@@ -86,7 +84,6 @@ public class Tests {
                 "(81)99999-9993",
                 "3xCf%12AkGtUmnhg!@as");
         UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
-        when(usuarioRep.verificarExistenciaEndereco()).thenReturn(false);
         when(usuarioRep.inserir(u)).thenReturn(u);
         Usuario uCad=neg.adicionar(u);
         verify(usuarioRep, times(0)).inserir(u);
@@ -101,7 +98,6 @@ public class Tests {
                 "(81)99999-9994",
                 "3xCf%12AkGtUmnhg!@as");
         UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
-        when(usuarioRep.verificarExistenciaDataNascimento()).thenReturn(false);
         when(usuarioRep.inserir(u)).thenReturn(u);
         Usuario uCad=neg.adicionar(u);
         verify(usuarioRep, times(0)).inserir(u);
@@ -116,7 +112,6 @@ public class Tests {
                 "(81)99999-9995",
                 "3xCf%12AkGtUmnhg!@as");
         UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
-        when(usuarioRep.verificarExistenciaEmail()).thenReturn(false);
         when(usuarioRep.inserir(u)).thenReturn(u);
         Usuario uCad=neg.adicionar(u);
         verify(usuarioRep, times(0)).inserir(u);
@@ -131,7 +126,6 @@ public class Tests {
                 "",
                 "3xCf%12AkGtUmnhg!@as");
         UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
-        when(usuarioRep.verificarExistenciaTelefone()).thenReturn(false);
         when(usuarioRep.inserir(u)).thenReturn(u);
         Usuario uCad=neg.adicionar(u);
         verify(usuarioRep, times(0)).inserir(u);
@@ -145,6 +139,11 @@ public class Tests {
                 "usuario-4@gmail.com",
                 "(81)99999-9995",
                 "3xCf%12AkGtUmnhg!@as");
+        UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
+        when(usuarioRep.inserir(u)).thenReturn(u);
+        Usuario uCad=neg.adicionar(u);
+        verify(usuarioRep, times(1)).inserir(u);
+        Assertions.assertNotNull(uCad);
     }
     @Test
     public void cadastroSenhaFraca(){
@@ -154,5 +153,11 @@ public class Tests {
                 "usuario-5@gmail.com",
                 "(81)99999-9996",
                 "1234");
+        UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
+        when(usuarioRep.inserir(u)).thenReturn(u);
+        Usuario uCad=neg.adicionar(u);
+        verify(usuarioRep, times(0)).inserir(u);
+        Assertions.assertNull(uCad);
+
     }
 }

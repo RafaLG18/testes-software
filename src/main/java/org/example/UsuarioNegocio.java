@@ -33,6 +33,39 @@ public class UsuarioNegocio {
         if(u.getTelefone() == null || u.getTelefone().trim().isEmpty()){
             return null;
         }
+
+        if(verificarSenhaForte(u.getSenha())){
+            return null;
+        }
         return this.rep.inserir(u);
+    }
+
+    private boolean verificarSenhaForte(String senha){
+        int upper=0;
+        int lower=0;
+        int digit=0;
+        int especial=0;
+
+        if(senha.length()>=14){
+            for (int i = 0; i < senha.length(); i++) {
+                char c=senha.charAt(i);
+                if (Character.isUpperCase(c)){
+                    upper++;
+                } else if (Character.isLowerCase(c)) {
+                    lower++;
+
+                } else if (Character.isDigit(c)) {
+                    digit++;
+                } else if (!Character.isLetterOrDigit(c)) {
+                    especial++;
+                }
+
+            }
+        }
+
+        if (upper>0 && lower>0 && digit>0 && especial>0){
+            return  false;
+        }
+        return true;
     }
 }
