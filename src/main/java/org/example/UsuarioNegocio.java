@@ -25,6 +25,10 @@ public class UsuarioNegocio {
         if(u.getDataNascimento() == null ){
             return null;
         }
+
+        if(u.getEmail() == null || u.getEmail().trim().isEmpty()){
+            return null;
+        }
         return this.rep.inserir(u);
     }
 }

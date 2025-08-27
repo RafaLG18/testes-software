@@ -115,6 +115,12 @@ public class Tests {
                 "",
                 "(81)99999-9995",
                 "3xCf%12AkGtUmnhg!@as");
+        UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
+        when(usuarioRep.verificarExistenciaEmail(u.getEmail())).thenReturn(false);
+        when(usuarioRep.inserir(u)).thenReturn(u);
+        Usuario uCad=neg.adicionar(u);
+        verify(usuarioRep, times(0)).inserir(u);
+        Assertions.assertNull(uCad);
     }
     @Test
     public void cadastroFaltandoTelefone(){
