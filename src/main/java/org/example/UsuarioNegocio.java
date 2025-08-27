@@ -7,6 +7,14 @@ public class UsuarioNegocio {
     }
 
     public Usuario adicionar(Usuario u){
+        if(this.rep.buscarPorTelefone(u.getTelefone())){
+            return null;
+        }
+
+        if(this.rep.buscarPorEmail(u.getEmail())){
+            return null;
+        }
+
         return this.rep.inserir(u);
     }
 }

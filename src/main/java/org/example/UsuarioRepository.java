@@ -12,4 +12,26 @@ public class UsuarioRepository {
         return u;
     }
 
+    public boolean buscarPorTelefone(String telefone){
+        boolean found = false;
+        for (Usuario u:usuarios){
+            if(u.getTelefone().equals(telefone)){
+                found =true;
+                break;
+            }
+        }
+        return found;
+    };
+
+    public boolean buscarPorEmail(String email){
+        boolean found = false;
+        for (Usuario u:usuarios){
+            if(u.getEmail().equals(email)){
+                found =true;
+                break;
+            }
+        }
+        return found;
+    };
+
 }

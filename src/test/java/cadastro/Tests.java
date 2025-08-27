@@ -8,8 +8,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class Tests {
     private UsuarioRepository usuarioRep;
@@ -41,10 +40,12 @@ public class Tests {
                 "usuario@gmail.com",
                 "(81)99999-9999",
                 "3xCf%12AkGtUmnhg!@as");
-        when(usuarioRep.inserir(u)).thenReturn(u);
         UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
-
-
+        when(usuarioRep.buscarPorTelefone(u.getTelefone())).thenReturn(true);
+        when(usuarioRep.inserir(u)).thenReturn(u);
+        Usuario uCad=neg.adicionar(u);
+        verify(usuarioRep, times(0)).inserir(u);
+        Assertions.assertNull(uCad);
     }
     @Test
     public void cadastroEmailExistente(){
@@ -54,6 +55,12 @@ public class Tests {
                 "usuario@gmail.com",
                 "(81)99999-9991",
                 "3xCf%12AkGtUmnhg!@as");
+        UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
+        when(usuarioRep.buscarPorEmail(u.getEmail())).thenReturn(true);
+        when(usuarioRep.inserir(u)).thenReturn(u);
+        Usuario uCad=neg.adicionar(u);
+        verify(usuarioRep, times(0)).inserir(u);
+        Assertions.assertNull(uCad);
     }
     @Test
     public void cadastroFaltandoNome(){
