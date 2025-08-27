@@ -33,7 +33,7 @@ public class UsuarioRepository {
         }
         return found;
     };
-    public boolean verificarExistenciaNome(String nome){
+    public boolean verificarExistenciaNome(){
         boolean found = false;
         for (Usuario u:usuarios){
             if(!u.getNome().isEmpty()){
@@ -44,7 +44,7 @@ public class UsuarioRepository {
         return found;
     }
 
-    public boolean verificarExistenciaEndereco(String endereco){
+    public boolean verificarExistenciaEndereco(){
         boolean found = false;
         for (Usuario u:usuarios){
             if(!u.getEndereco().isEmpty()){
@@ -55,7 +55,7 @@ public class UsuarioRepository {
         return found;
     }
 
-    public boolean verificarExistenciaDataNascimento(String Data){
+    public boolean verificarExistenciaDataNascimento(){
         boolean found = false;
         for (Usuario u:usuarios){
             if(u.getDataNascimento()!=null){
@@ -65,10 +65,21 @@ public class UsuarioRepository {
         }
         return found;
     }
-    public boolean verificarExistenciaEmail(String email){
+    public boolean verificarExistenciaEmail(){
         boolean found = false;
         for (Usuario u:usuarios){
             if(!u.getEmail().isEmpty()){
+                found =true;
+                break;
+            }
+        }
+        return found;
+    }
+
+    public boolean verificarExistenciaTelefone(){
+        boolean found = false;
+        for (Usuario u:usuarios){
+            if(!u.getTelefone().isEmpty()){
                 found =true;
                 break;
             }

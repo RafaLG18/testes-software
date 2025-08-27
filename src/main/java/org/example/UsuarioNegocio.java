@@ -29,6 +29,10 @@ public class UsuarioNegocio {
         if(u.getEmail() == null || u.getEmail().trim().isEmpty()){
             return null;
         }
+
+        if(u.getTelefone() == null || u.getTelefone().trim().isEmpty()){
+            return null;
+        }
         return this.rep.inserir(u);
     }
 }
