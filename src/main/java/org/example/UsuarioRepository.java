@@ -65,6 +65,15 @@ public class UsuarioRepository {
         }
         return found;
     }
-
+    public boolean verificarExistenciaEmail(String email){
+        boolean found = false;
+        for (Usuario u:usuarios){
+            if(!u.getEmail().isEmpty()){
+                found =true;
+                break;
+            }
+        }
+        return found;
+    }
 
 }
