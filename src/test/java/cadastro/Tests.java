@@ -71,7 +71,7 @@ public class Tests {
                 "(81)99999-9992",
                 "3xCf%12AkGtUmnhg!@as");
         UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
-        when(usuarioRep.verificarExistenciaNome(u.getNome())).thenReturn(false);
+        when(usuarioRep.verificarExistenciaNome()).thenReturn(false);
         when(usuarioRep.inserir(u)).thenReturn(u);
         Usuario uCad=neg.adicionar(u);
         verify(usuarioRep, times(0)).inserir(u);
@@ -86,7 +86,7 @@ public class Tests {
                 "(81)99999-9993",
                 "3xCf%12AkGtUmnhg!@as");
         UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
-        when(usuarioRep.verificarExistenciaEndereco(u.getEndereco())).thenReturn(false);
+        when(usuarioRep.verificarExistenciaEndereco()).thenReturn(false);
         when(usuarioRep.inserir(u)).thenReturn(u);
         Usuario uCad=neg.adicionar(u);
         verify(usuarioRep, times(0)).inserir(u);
@@ -101,7 +101,7 @@ public class Tests {
                 "(81)99999-9994",
                 "3xCf%12AkGtUmnhg!@as");
         UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
-        when(usuarioRep.verificarExistenciaDataNascimento(u.getEndereco())).thenReturn(false);
+        when(usuarioRep.verificarExistenciaDataNascimento()).thenReturn(false);
         when(usuarioRep.inserir(u)).thenReturn(u);
         Usuario uCad=neg.adicionar(u);
         verify(usuarioRep, times(0)).inserir(u);
@@ -116,7 +116,7 @@ public class Tests {
                 "(81)99999-9995",
                 "3xCf%12AkGtUmnhg!@as");
         UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
-        when(usuarioRep.verificarExistenciaEmail(u.getEmail())).thenReturn(false);
+        when(usuarioRep.verificarExistenciaEmail()).thenReturn(false);
         when(usuarioRep.inserir(u)).thenReturn(u);
         Usuario uCad=neg.adicionar(u);
         verify(usuarioRep, times(0)).inserir(u);
@@ -130,6 +130,12 @@ public class Tests {
                 "usuario-4@gmail.com",
                 "",
                 "3xCf%12AkGtUmnhg!@as");
+        UsuarioNegocio neg= new UsuarioNegocio(usuarioRep);
+        when(usuarioRep.verificarExistenciaTelefone()).thenReturn(false);
+        when(usuarioRep.inserir(u)).thenReturn(u);
+        Usuario uCad=neg.adicionar(u);
+        verify(usuarioRep, times(0)).inserir(u);
+        Assertions.assertNull(uCad);
     }
     @Test
     public void cadastroSenhaForte(){
